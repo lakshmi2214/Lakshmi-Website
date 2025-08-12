@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sell and Save Gold Scheme: Get Cash & Secure Your Gold</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom CSS for Inter font and background */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fcf8f3; /* Light beige background as per images */
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        /* Custom styles for the gold rate block */
+        .gold-rate-block {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background-color: #facc15; /* Tailwind yellow-400 */
+            color: #333;
+            padding: 12px 20px;
+            border-radius: 9999px; /* Fully rounded */
+            display: flex;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+        }
+        .gold-rate-block svg {
+            margin-right: 8px;
+        }
+
+        /* Blog content styling */
+        .blog-container {
+            max-width: 900px;
+            width: 100%;
+            background-color: #fff; /* White background for the main content area */
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            margin-top: 20px;
+            margin-bottom: 40px;
+        }
+
+        .blog-header h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #1a202c;
+            line-height: 1.2;
+            margin-bottom: 10px;
+        }
+
+        .blog-meta-info {
+            font-size: 0.9rem;
+            color: #6b7280;
+            margin-bottom: 20px;
+        }
+
+        .blog-meta-info a {
+            color: #00754a;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .blog-meta-info a:hover {
+            text-decoration: underline;
+        }
+
+        .blog-hero-image {
+            width: 100%;
+            height: 400px; /* Fixed height for the hero image */
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+
+        .blog-section-title {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #1a202c;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        .blog-content-text p {
+            margin-bottom: 15px;
+            line-height: 1.7;
+            color: #4a5568;
+        }
+
+        .blog-content-text ul {
+            list-style-type: disc;
+            margin-left: 20px;
+            margin-bottom: 15px;
+            color: #4a5568;
+        }
+
+        .blog-content-text ul li {
+            margin-bottom: 8px;
+        }
+
+        .comments-section {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .comments-section h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #1a202c;
+            margin-bottom: 20px;
+        }
+
+        .comment-form h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1a202c;
+            margin-bottom: 10px;
+        }
+
+        .comment-form p {
+            font-size: 0.9rem;
+            color: #6b7280;
+            margin-bottom: 20px;
+        }
+
+        .comment-form label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #4a5568;
+            margin-bottom: 8px;
+        }
+
+        .comment-form input[type="text"],
+        .comment-form input[type="email"],
+        .comment-form textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #cbd5e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            color: #2d3748;
+            background-color: #f7fafc;
+            transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+
+        .comment-form input[type="text"]:focus,
+        .comment-form input[type="email"]:focus,
+        .comment-form textarea:focus {
+            outline: none;
+            border-color: #00754a;
+            box-shadow: 0 0 0 3px rgba(0, 117, 74, 0.2);
+        }
+
+        .comment-form textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .comment-form .checkbox-container {
+            display: flex;
+            align-items: center;
+            margin-top: 15px;
+            margin-bottom: 20px;
+        }
+
+        .comment-form .checkbox-container input[type="checkbox"] {
+            margin-right: 8px;
+            width: 18px;
+            height: 18px;
+            border: 1px solid #cbd5e0;
+            border-radius: 4px;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .comment-form .checkbox-container input[type="checkbox"]:checked {
+            background-color: #00754a;
+            border-color: #00754a;
+        }
+
+        .comment-form .checkbox-container input[type="checkbox"]:checked::after {
+            content: '✔';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 12px;
+        }
+
+        .comment-form button[type="submit"] {
+            background-color: #f97316; /* Orange color for button */
+            color: white;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: background-color 0.2s ease-in-out;
+        }
+
+        .comment-form button[type="submit"]:hover {
+            background-color: #ea580c; /* Darker orange on hover */
+        }
+
+        .blog-navigation {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #e2e8f0;
+            text-align: left;
+        }
+        .blog-navigation a {
+            color: #00754a;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+        }
+        .blog-navigation a:hover {
+            text-decoration: underline;
+        }
+        .blog-navigation svg {
+            margin-right: 8px;
+        }
+
+        /* Header Styling */
+.page-header {
+  max-width: 1000px;
+  margin: 30px auto;
+  padding: 20px 30px;
+  background: linear-gradient(to right, #fffef4, #fffdf0);
+  border: 1px solid #ffe8a1;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  box-shadow: 0 8px 20px rgba(255, 215, 0, 0.1);
+}
+
+/* Logo Container with Glow and Shine Border */
+.logo-glow {
+  border: 4px solid #ffd700;
+  border-radius: 50%;
+  padding: 20px;
+  background: radial-gradient(circle, #fffbe0, #fff1b8);
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.6), inset 0 0 5px rgba(255, 255, 255, 0.6);
+  transition: transform 0.3s ease;
+}
+
+.logo-glow img {
+  height: 64px;
+  width: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Company Title */
+.company-title h1 {
+  margin: 0;
+  font-size: 1.8rem;
+  color: #b57f00;
+  font-weight: bold;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.company-title .tagline {
+  margin: 4px 0 0;
+  font-size: 1rem;
+  color: #777;
+  font-style: italic;
+}
+
+        /* Tag styling */
+           body {
+      background: linear-gradient(to right, #fff3e6, #fffbe0);
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      animation: bgPulse 10s infinite alternate;
+    }
+
+    @keyframes bgPulse {
+      0% { background-color: #fffbe0; }
+      100% { background-color: #fff8e1; }
+    }
+
+    .chat-box {
+      width: 90%;
+      max-width: 900px;
+      margin: 80px auto;
+      padding: 40px;
+      background: #fffefa;
+      border-radius: 30px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      animation: popUp 0.8s ease-out;
+      border: 3px dashed #ffd700;
+    }
+
+    @keyframes popUp {
+      0% { transform: scale(0.5); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .chat-box h3 {
+      text-align: center;
+      color: #cc9900;
+      margin-bottom: 30px;
+    }
+
+    .form-control {
+      border-radius: 12px;
+      transition: all 0.3s ease;
+    }
+
+    .form-control:focus {
+      box-shadow: 0 0 10px #ffc107;
+      border: 20px solid #ffbf00;
+    }
+
+    /* Stylish Border for Name Box */
+    #name {
+      border: 2px dashed #e1a300;
+      background: linear-gradient(45deg, #fff0d1, #fffbe6);
+    }
+
+    #name:hover {
+      box-shadow: 0 0 12px #ffcc00;
+      transform: scale(1.02);
+    }
+
+    .emoji-comment {
+      animation: wiggle 1.5s infinite;
+    }
+
+    @keyframes wiggle {
+      0%, 100% { transform: rotate(-2deg); }
+      50% { transform: rotate(2deg); }
+    }
+
+    .btn-funny {
+      background-color: #ffd700;
+      color: #000;
+      font-weight: bold;
+      border: none;
+      border-radius: 10px;
+    }
+
+    .btn-funny:hover {
+      background-color: #ffa500;
+      transform: scale(1.1) rotate(-3deg);
+      transition: all 0.3s;
+    }
+
+    /* Thank You Popup */
+    .thank-you-popup {
+      display: none;
+      position: fixed;
+      top: 30%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #fffbe0;
+      padding: 30px;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+      z-index: 9999;
+      animation: shake 0.8s ease-in-out;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translate(-50%, -50%) rotate(0deg); }
+      25% { transform: translate(-48%, -52%) rotate(-2deg); }
+      75% { transform: translate(-52%, -48%) rotate(2deg); }
+    }
+
+
+    </style>
+</head>
+<body>
+
+    <!-- Stylish Page Header with Highlighted Logo -->
+<header class="page-header">
+  <div class="logo-glow">
+    <img src="assets/images/logo.jpg" alt="Sristar Gold Logo">
+  </div>
+  <div class="company-title">
+    <h1>Sristar Gold Company</h1>
+    <p class="tagline">💎 Trusted Gold Services | Purity & Promise</p>
+  </div>
+</header>
+
+    <!-- Main Blog Content Container -->
+    <div class="blog-container">
+        <!-- Blog Header -->
+        <div class="blog-header">
+            <h1>Sell and Save Gold Scheme: Get Cash & Secure Your Gold</h1>
+            <p class="blog-meta-info">
+                Jan 2024 — by <a href="#">Sristar</a> in <a href="#">Blog</a>, <a href="#">gold buyer</a>, <a href="#">Sell and save</a>, <a href="#">sell gold</a>
+            </p>
+        </div>
+
+        <!-- Blog Hero Image -->
+        <!-- Updated image URL for white background and smaller text -->
+        <img src="assets/images/Screenshot_2025-07-30_105329-removebg-preview.png" alt="Sell & Save Gold Scheme" class="blog-hero-image">
+
+        <!-- Blog Content Text -->
+        <div class="blog-content-text" style="font-size: 1.25rem; line-height: 1.8;">
+  <p><strong>In an industry as timeless and dynamic as gold trading</strong>, Srikanth V, the founder and Director of Sristr Gold and Sristr Sona Chandi Limited, has etched a unique mark. His innovative approach to gold buying and selling across Karnataka and Tamil Nadu has revolutionized the industry. In an insightful conversation, Srikanth provides insight into the philosophy behind gold trading, and the mechanisms ensuring transparency and trust in this age-old business.</p>
+
+  <p>The story of Sristar Gold is one of humble beginnings and ambitious vision. Srikanth reflects on his start, "We initially started from scratch, but over the years we have now successfully established twelve (12) centres across Karnataka and twenty (20) in Tamil Nadu. Our core business is not just buying gold but also releasing pledged gold. This unique model offers relief to those struggling with the burden of interest on their pledged gold."</p>
+
+  <p><strong>Visit our 10+ offices</strong> located all across Karnataka and Tamil Nadu. Don't worry if you cannot come to us; just opt for our doorstep-service, and we will reach out to you.</p>
+
+  <h2 class="blog-section-title" style="font-size: 2rem;">Complexities of Trding in Gold</h2>
+  <p>For Srikanth, gold is not just a metal; it's a symbol of enduring value. He says, "Gold is a super element, unique in its characteristics. Its non-tarnishable nature and high resale value set it apart from other metals." He further explains the intricacies of gold purity, "24-carat gold, being the purest form, is too malleable for jewelry. Hence, we often mix it with metals like zinc, silver, and copper to create 22-carat gold, suitable for ornamentation."</p>
+
+  <p>In the labyrinthine world of gold trading, where authenticity is as valuable as the metal itself, piloting through the realm of genuine sellers and avoiding scams is skill in its own right. In an exclusive interview with Srikanth V, the founder, and Director of Sristar Gold and Sristar Sona Chandi Limited, who is a luminary in the field of gold trading, our magizine gained profound insights into the naunces of this glittering industry.</p>
+
+  <h3 style="font-size: 1.5rem; font-weight: 600; color: #444;  padding: 10px 15px; border-left: 5px solid #ffc107; border-radius: 4px;">
+  Decoding Authenticity in Gold Transactions:
+</h3>
+
+  <ul style="font-size: 1.2rem; color: #555; padding-left: 20px;">
+    <li>"Government certification in the cornerstone of authenticity in the gold market," Srikanth V begins, underscoring the significance of regulatory measures in establishing the credibility of gold sellers and products. "For every piece of jewelry, a hallmark is essential it's proof of meeting international quality standards," he elaborates, underlining the role of standardization in safeguarding buyers. In his view, compliance with financial regulations and acquiring certifications like those from the International Standards Organization is crucial for businesses dealing with significant gold transactions. </li>
+  </ul>
+
+  <h3 style="font-size: 1.5rem; font-weight: 600; color: #444;  padding: 10px 15px; border-left: 5px solid #ffc107; border-radius: 4px;">
+  confronting the Scourge of Gold scams:
+</h3>
+<ul style="font-size: 1.2rem; color: #555; padding-left: 20px;">
+    <li>"Inferior metals, like copper, are frequently coated in gold to deceive unsuspecting buyers," he states. highlighting the cunning tactics employed by fraudsters. Further delving into the depths of deceit, he mentions the alarming trend of collusion in financial institutions, particularly in gold-pledging scenarios </li>
+  </ul>
+
+  <h3 style="font-size: 1.5rem; font-weight: 600; color: #444;  padding: 10px 15px; border-left: 5px solid #ffc107; border-radius: 4px;">
+  The Role and limitations Of Technology:
+</h3>
+<ul style="font-size: 1.2rem; color: #555; padding-left: 20px;">
+    <li> In response to a query about the role of XRF technology in testing gold purity, Srikanth V acknowledges its utility but cautions against overreliance. "XRF technology is a significant. tool, yet it's not a panacea against the more sophisticated scams, such as gold-layered counterfeits," he explains. He further adds that for the average person, professional assistance remains the most reliable means of verifying gold's authenticity.</li>
+  </ul>
+
+  <h3 style="font-size: 1.5rem; font-weight: 600; color: #444;  padding: 10px 15px; border-left: 5px solid #ffc107; border-radius: 4px;">
+  Traditional Testing Technologies:
+</h3>
+<ul style="font-size: 1.2rem; color: #555; padding-left: 20px;">
+    <li>For those without access to professional services, Srikanth V suggests a simpler approach. "A traditional method involves rubbing stone and acid," he says. "While this can provide some authenticity, it's not foolproof and requires a certain level of expertise." </li>
+  </ul>
+
+  <h3 style="font-size: 1.5rem; font-weight: 600; color: #444;  padding: 10px 15px; border-left: 5px solid #ffc107; border-radius: 4px;">
+   A Tale of Fraud And Deception:
+</h3>
+<ul style="font-size: 1.2rem; color: #555; padding-left: 20px;">
+    <li>Illustrating the cunning nature of gold-related scams, Srikanth V narrates an incident at their Mangalore branch. "An employee, in collusion with the branch manager, orchestrated a complex fraud, using a fake customer to pledge gold that didn't exist," he recounts, highlighting the lengths to which scammers will go to exploit vulnerabilities in the system. </li>
+  </ul>
+</div>
+
+                <h3 class="text-xl font-semibold text-gray-700 mb-2">How it works:</h3>
+                <ul class="list-disc list-inside text-gray-600">
+               <li>Participants make regular contributions (e.g., monthly) to a scheme offered by jewellers or financial institutions.</li>
+                </ul>
+                <h3 class="text-xl font-semibold text-gray-700 mb-2">Accumulation</h3>
+                <ul class="list-disc list-inside text-gray-600">
+               <li>These contributions accumulate over a set period, and at the end of the tenure, the accumulated amount can be used to purchase gold from the associated jeweller.</li>
+                </ul>
+
+            <h4 class="blog-section-title">Your Gold, Your Decision</h4>
+            <p>Many people hold deep emotional value in their gold, and we respect that. This scheme doesn't push you to sell—it empowers you with flexible options so you can make the best decision based on your situation.</p>
+        </div>
+
+        <!-- Tags Section -->
+        <div class="chat-box">
+  <h3>💬 Chat with Us (Jewellery Edition) 💍</h3>
+  <form id="funnyForm">
+    <div class="mb-3">
+      <label for="name" class="form-label">👤 Name</label>
+      <input type="text" class="form-control" id="name" placeholder="Type your royal name 👑" required>
+    </div>
+    <div class="mb-3">
+      <label for="mobile" class="form-label">📱 Mobile Number</label>
+      <input type="tel" class="form-control" id="mobile" placeholder="Enter your golden digits ✨" required>
+    </div>
+    <div class="mb-3">
+      <label for="email" class="form-label">📧 Email ID</label>
+      <input type="email" class="form-control" id="email" placeholder="Your sparkly email 💌" required>
+    </div>
+    <div class="mb-3">
+      <label for="comment" class="form-label emoji-comment">💬 Comments</label>
+      <textarea class="form-control" id="comment" rows="3" placeholder="Tell us your glittery thoughts 💎💭" required></textarea>
+    </div>
+    <div class="text-center">
+      <button type="submit" class="btn btn-funny px-4 py-2">Send Message 💌</button>
+    </div>
+  </form>
+</div>
+
+<!-- Thank You Popup -->
+<div class="thank-you-popup" id="thankYouBox">
+  <h4>🎉 Thank You! 🎉</h4>
+  <p>We received your ✨sparkling✨ message! <br>Someone from our gold mine will reply soon! ⛏️😄</p>
+</div>
+
+     
+
+    <!-- Footer -->
+    <footer class="footer" style="background-color: #1c2331; color: #fff; font-family: 'Segoe UI', sans-serif; padding-top: 40px; width: 100%; margin-top: 40px;">
+        <!-- Social Media Section -->
+        <div class="social-section" style="background-color: #6351ce; text-align: center; padding: 20px;">
+            <span style="margin-right: 30px; font-weight: 500;">Get connected with us on social networks:</span>
+            <a href="https://www.facebook.com/sristargold/" target="_blank" style="color: #fff; margin: 0 10px; text-decoration: none; font-size: 18px; transition: color 0.3s;"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://in.linkedin.com/company/sristargold" target="_blank" style="color: #fff; margin: 0 10px; text-decoration: none; font-size: 18px; transition: color 0.3s;"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://www.instagram.com/sristargold?igsh=MWl1aGVoeTR0ZHA5cw==" target="_blank" style="color: #fff; margin: 0 10px; text-decoration: none; font-size: 18px; transition: color 0.3s;"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.youtube.com/embed/pDc-zHBSuNA?si=MS3-SBNVAcRVb9dp" target="_blank" style="color: #fff; margin: 0 10px; text-decoration: none; font-size: 18px; transition: color 0.3s;"><i class="fab fa-youtube"></i></a>
+        </div>
+
+        <!-- Main Footer Content -->
+        <div style="display: flex; justify-content: space-around; flex-wrap: wrap; padding: 40px 20px;">
+            <!-- Column 1 -->
+            <div style="flex: 1 1 200px; margin: 10px 20px;">
+                <h6 style="font-weight: bold; margin-bottom: 20px; position: relative; text-transform: uppercase;">Company Name</h6>
+                <p style="color: #ccc; font-size: 14px; text-decoration: none; line-height: 1.6;">SRISTAR GOLD COMPANY</p>
+            </div>
+
+            <!-- Column 2 -->
+            <div style="flex: 1 1 200px; margin: 10px 20px;">
+                <h6 style="font-weight: bold; margin-bottom: 20px; position: relative; text-transform: uppercase;">Services</h6>
+                <p><a href="#" style="color: #ccc; font-size: 14px; text-decoration: none; line-height: 1.6;">Gold Exchange</a></p>
+                <p><a href="#" style="color: #ccc; font-size: 14px; text-decoration: none; line-height: 1.6;">Sell Gold</a></p>
+                <p><a href="#" style="color: #ccc; font-size: 14px; text-decoration: none; line-height: 1.6;">Rent Gold</a></p>
+                <p><a href="#" style="color: #ccc; font-size: 14px; text-decoration: none; line-height: 1.6;">Pledged Gold</a></p>
+            </div>
+
+            <!-- Column 3 -->
+            <div style="flex: 1 1 200px; margin: 10px 20px;">
+                <h6 style="font-weight: bold; margin-bottom: 20px; position: relative; text-transform: uppercase;">Links</h6>
+                <p><a href="index.html" style="color: #ccc; font-size: 14px; text-decoration: none; line-height: 1.6;">Home</a></p>
+                <p><a href="about.html" style="color: #ccc; font-size: 14px; text-decoration: none; line-height: 1.6;">About</a></p>
+                <p><a href="services.html" style="color: #ccc; font-size: 14px; text-decoration: none; line-height: 1.6;">Services</a></p>
+                <p><a href="branches.html" style="color: #ccc; font-size: 14px; text-decoration: none; line-height: 1.6;">Branches</a></p>
+                <p><a href="contact.html" style="color: #ccc; font-size: 14px; text-decoration: none; line-height: 1.6;">Contact</a></p>
+            </div>
+
+            <!-- Column 4 -->
+            <div style="flex: 1 1 200px; margin: 10px 20px;">
+                <h6 style="font-weight: bold; margin-bottom: 20px; position: relative; text-transform: uppercase;">Contact</h6>
+                <p style="color: #ccc; font-size: 14px; text-decoration: none; line-height: 1.6;"><i class="fas fa-home" style="margin-right: 10px; color: #ffd700;"></i>280/1, Anniamma Arcade, 2nd Floor,<br> Sampige Road, 18th Cross Rd, signal,<br> Malleshwaram, Bengaluru.</p>
+                <p style="color: #ccc; font-size: 14px; text-decoration: none; line-height: 1.6;"><i class="fas fa-envelope" style="margin-right: 10px; color: #ffd700;"></i> sristargoldcompany@gmail.com</p>
+                <p style="color: #ccc; font-size: 14px; text-decoration: none; line-height: 1.6;"><i class="fas fa-phone" style="margin-right: 10px; color: #ffd700;"></i>+91 63 66 333 444</p>
+                <p style="color: #ccc; font-size: 14px; text-decoration: none; line-height: 1.6;"><i class="fas fa-print" style="margin-right: 10px; color: #ffd700;"></i>+91 63 66 333 444</p>
+            </div>
+        </div>
+
+        <!-- Footer Bottom -->
+        <div style="background-color: #0d1117; text-align: center; padding: 20px; font-size: 14px; color: #aaa;">
+            <p>&copy; 2025 Sristar Gold Company. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Font Awesome for Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+
+    <script>
+  const form = document.getElementById('funnyForm');
+  const thankYouBox = document.getElementById('thankYouBox');
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    thankYouBox.style.display = 'block';
+
+    setTimeout(() => {
+      thankYouBox.style.display = 'none';
+      form.reset();
+    }, 4000);
+  });
+</script>
+
+</body>
+</html>
